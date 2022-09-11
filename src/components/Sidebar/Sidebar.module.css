@@ -1,0 +1,25 @@
+.sidebar-container {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  padding: 0.8rem 1.6rem;
+  border-left: 3px solid #2b4865;
+
+  overflow: auto;
+}
+
+.sidebar-para {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (max-width: 34em) {
+  .sidebar-container {
+    border-left: none;
+  }
+}
