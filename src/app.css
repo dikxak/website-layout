@@ -1,0 +1,27 @@
+.app {
+  display: grid;
+  grid-template-columns: 70fr 30fr;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.2rem 2.4rem;
+}
+
+.main-content p {
+  font-size: 3.6rem;
+  font-weight: 500;
+}
+
+/* ================= */
+/* Media Query */
+/* Below 544px (SmartPhones) */
+/* ================= */
+@media (max-width: 34em) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+} ;
