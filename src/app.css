@@ -5,6 +5,9 @@
 
 .main-content {
   display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
   align-items: center;
   justify-content: center;
 
@@ -14,6 +17,12 @@
 .main-content p {
   font-size: 3.6rem;
   font-weight: 500;
+}
+
+.main-content .active-text {
+  color: #24800a;
+  font-size: 4.2rem;
+  font-weight: 700;
 }
 
 /* ================= */

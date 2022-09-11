@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css';
 import Card from './components/Card/Card';
 
 const App = () => {
+  const [activeComponent, setActiveComponent] = useState(
+    'No any active component'
+  );
+
+  const activeComponentChangeHandler = itemText => {
+    setActiveComponent(itemText);
+  };
+
   const sidebarData = [];
 
   for (let i = 1; i <= 20; i++) {
@@ -14,7 +22,8 @@ const App = () => {
   return (
     <section className="app">
       <main className="main-content">
-        <p>Main Content</p>
+        <p>Active Component:</p>
+        <p className="active-text">{activeComponent}</p>
       </main>
       <Sidebar
         render={item => {
@@ -22,6 +31,7 @@ const App = () => {
             <Card
               key={item}
               render={paraClass => <p className={paraClass}>{item}</p>}
+              onClick={activeComponentChangeHandler.bind(this, item)}
             ></Card>
           );
         }}
