@@ -7,7 +7,7 @@ const Card = props => {
     <div
       className={`${classes['card']} ${props.className ? props.className : ''}`}
     >
-      {props.children}
+      {props.render(classes['card-para'])}
     </div>
   );
 };

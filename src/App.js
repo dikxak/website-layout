@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css';
+import Card from './components/Card/Card';
 
 const App = () => {
   const sidebarData = [];
@@ -15,7 +16,17 @@ const App = () => {
       <main className="main-content">
         <p>Main Content</p>
       </main>
-      <Sidebar listData={sidebarData} />
+      <Sidebar
+        render={item => {
+          return (
+            <Card
+              key={item}
+              render={paraClass => <p className={paraClass}>{item}</p>}
+            ></Card>
+          );
+        }}
+        listData={sidebarData}
+      />
     </section>
   );
 };

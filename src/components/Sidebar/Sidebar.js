@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '../Card/Card';
 
 import classes from './Sidebar.module.css';
 
@@ -9,11 +8,7 @@ const Sidebar = props => {
   return (
     <div className={classes['sidebar-container']}>
       {props.listData.slice(0, initialListCount).map(item => {
-        return (
-          <Card key={item}>
-            <p className={classes['sidebar-para']}>{item}</p>
-          </Card>
-        );
+        return props.render(item);
       })}
     </div>
   );
