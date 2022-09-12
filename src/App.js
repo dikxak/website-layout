@@ -12,11 +12,11 @@ const App = () => {
     generatedData.push(`Item-${i}`);
   }
 
-  const [activeComponent, setActiveComponent] = useState(
-    'No any active component'
+  const [activeComponent, setActiveComponent] = useState(null);
+  const { paginationChangeHandler, slicedAppData, indexRanges } = usePagination(
+    generatedData,
+    setActiveComponent
   );
-  const { paginationChangeHandler, slicedAppData, indexRanges } =
-    usePagination(generatedData);
 
   const activeComponentChangeHandler = itemText => {
     setActiveComponent(itemText);

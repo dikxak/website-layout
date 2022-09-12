@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
-const usePagination = (appData, itemsPerPage = 20, currPage = 1) => {
+const usePagination = (
+  appData,
+  changeActiveComponent,
+  itemsPerPage = 20,
+  currPage = 1
+) => {
   const [currentPage, setCurrentPage] = useState(currPage);
 
   const totalItems = appData.length;
@@ -12,6 +17,7 @@ const usePagination = (appData, itemsPerPage = 20, currPage = 1) => {
   const paginationChangeHandler = () => {
     if (currentPage === totalPageCount) return;
 
+    changeActiveComponent(null);
     setCurrentPage(prevPage => ++prevPage);
   };
 
