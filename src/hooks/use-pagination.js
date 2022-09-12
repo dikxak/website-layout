@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
-const usePagination = appData => {
-  const [currentPage, setCurrentPage] = useState(1);
+const usePagination = (appData, itemsPerPage = 20, currPage = 1) => {
+  const [currentPage, setCurrentPage] = useState(currPage);
 
   const totalItems = appData.length;
-  const itemsPerPage = 20;
   const totalPageCount = totalItems / itemsPerPage;
 
   const indexStart = (currentPage - 1) * itemsPerPage;
