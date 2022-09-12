@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css';
@@ -8,24 +8,39 @@ const App = () => {
   const [activeComponent, setActiveComponent] = useState(
     'No any active component'
   );
+  const [appData, setAppData] = useState([]);
+
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(20);
 
   const activeComponentChangeHandler = itemText => {
     setActiveComponent(itemText);
   };
 
-  const sidebarData = [];
+  useEffect(() => {
+    const generatedData = [];
+    for (let i = 1; i <= 100; i++) {
+      generatedData.push(`Item-${i}`);
+    }
 
-  for (let i = 1; i <= 100; i++) {
-    sidebarData.push(`Item-${i}`);
-  }
+    setAppData(generatedData);
+  }, []);
+
+  const getIndexRanges = useCallback((start, end) => {
+    setStartIndex(start);
+    setEndIndex(end);
+  }, []);
 
   return (
     <section className="app">
       <main className="main-content">
-        <p>Active Component:</p>
-        <p className="active-text">{activeComponent}</p>
+        <p>Active Component: {activeComponent}</p>
+        <p className="active-text">
+          Current Index Range: {startIndex}-{endIndex}
+        </p>
       </main>
       <Sidebar
+        getIndexRanges={getIndexRanges}
         render={item => {
           return (
             <Card
@@ -35,7 +50,7 @@ const App = () => {
             ></Card>
           );
         }}
-        listData={sidebarData}
+        listData={appData}
       />
     </section>
   );

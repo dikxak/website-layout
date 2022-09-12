@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import classes from './Sidebar.module.css';
 
 const Sidebar = props => {
+  const { getIndexRanges } = props;
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalItems = props.listData.length;
@@ -17,6 +19,10 @@ const Sidebar = props => {
 
     setCurrentPage(prevPage => ++prevPage);
   };
+
+  useEffect(() => {
+    getIndexRanges(indexStart, indexEnd);
+  }, [getIndexRanges, indexStart, indexEnd]);
 
   const { listData, render } = props;
 
