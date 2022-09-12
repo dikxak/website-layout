@@ -12,15 +12,15 @@ const App = () => {
     generatedData.push(`Item-${i}`);
   }
 
-  const [activeComponent, setActiveComponent] = useState(null);
-  const { paginationChangeHandler, slicedAppData, indexRanges } = usePagination(
-    generatedData,
-    setActiveComponent
-  );
-
   const activeComponentChangeHandler = itemText => {
     setActiveComponent(itemText);
   };
+
+  const [activeComponent, setActiveComponent] = useState(null);
+  const { paginationChangeHandler, slicedAppData, indexRanges } = usePagination(
+    generatedData,
+    activeComponentChangeHandler.bind(null, null)
+  );
 
   return (
     <section className="app">

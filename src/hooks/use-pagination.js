@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const usePagination = (
   appData,
-  changeActiveComponent,
+  defaultActiveComponent,
   itemsPerPage = 20,
   currPage = 1
 ) => {
@@ -17,7 +17,7 @@ const usePagination = (
   const paginationChangeHandler = () => {
     if (currentPage === totalPageCount) return;
 
-    changeActiveComponent(null);
+    defaultActiveComponent();
     setCurrentPage(prevPage => ++prevPage);
   };
 
