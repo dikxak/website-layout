@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css';
@@ -9,9 +9,14 @@ const App = () => {
     'No any active component'
   );
   const [appData, setAppData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const [startIndex, setStartIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(20);
+  const totalItems = appData.length;
+  const itemsPerPage = 20;
+  const totalPageCount = totalItems / itemsPerPage;
+
+  const indexStart = (currentPage - 1) * itemsPerPage;
+  const indexEnd = currentPage * itemsPerPage;
 
   const activeComponentChangeHandler = itemText => {
     setActiveComponent(itemText);
@@ -26,21 +31,24 @@ const App = () => {
     setAppData(generatedData);
   }, []);
 
-  const getIndexRanges = useCallback((start, end) => {
-    setStartIndex(start);
-    setEndIndex(end);
-  }, []);
+  const paginationChangeHandler = () => {
+    if (currentPage === totalPageCount) return;
+
+    setCurrentPage(prevPage => ++prevPage);
+  };
+
+  const slicedAppData = appData.slice(indexStart, indexEnd);
 
   return (
     <section className="app">
       <main className="main-content">
-        <p>Active Component: {activeComponent}</p>
+        <p>Current Index Range:</p>
         <p className="active-text">
-          Current Index Range: {startIndex}-{endIndex}
+          {indexStart}-{indexEnd}
         </p>
       </main>
       <Sidebar
-        getIndexRanges={getIndexRanges}
+        onPageChange={paginationChangeHandler}
         render={item => {
           return (
             <Card
@@ -50,7 +58,7 @@ const App = () => {
             ></Card>
           );
         }}
-        listData={appData}
+        listData={slicedAppData}
       />
     </section>
   );
