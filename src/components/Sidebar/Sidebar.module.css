@@ -18,6 +18,21 @@
   line-height: 1.5;
 }
 
+.btn--load {
+  font-size: 1.8rem !important;
+  color: #fff;
+
+  align-self: center;
+  padding: 1.6rem 3.2rem;
+  margin-top: 1.4rem;
+
+  background-color: #2b4865;
+}
+
+.btn--load:hover {
+  background-color: #405a74;
+}
+
 @media (max-width: 34em) {
   .sidebar-container {
     border-left: none;

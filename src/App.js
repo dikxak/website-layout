@@ -15,7 +15,7 @@ const App = () => {
 
   const sidebarData = [];
 
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 100; i++) {
     sidebarData.push(`Item-${i}`);
   }
 

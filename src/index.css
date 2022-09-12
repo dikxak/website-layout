@@ -29,3 +29,15 @@ a:visited {
   color: inherit;
   text-decoration: none;
 }
+
+.btn {
+  display: inline-block;
+
+  font: inherit;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+  transition: all 0.35s;
+}
