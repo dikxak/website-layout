@@ -10,18 +10,18 @@ const Sidebar = props => {
   const itemPerPage = 20;
   const totalPageCount = totalItems / itemPerPage;
 
-  const loadMoreBtnHandler = () => {
-    if (currentPage === totalPageCount) return;
-
-    setCurrentPage(prevPage => ++prevPage);
-  };
-
   useEffect(() => {
     const indexStart = (currentPage - 1) * itemPerPage; // For page 1: (1-1) * 20
     const indexEnd = currentPage * itemPerPage; // For page 1: 1 * 20, range = (0-20)
 
     setIndexRanges([indexStart, indexEnd]);
   }, [currentPage]);
+
+  const loadMoreBtnHandler = () => {
+    if (currentPage === totalPageCount) return;
+
+    setCurrentPage(prevPage => ++prevPage);
+  };
 
   return (
     <div className={classes['sidebar-container']}>
