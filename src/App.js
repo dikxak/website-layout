@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css';
@@ -7,7 +7,7 @@ import Card from './components/Card/Card';
 import usePagination from './hooks/use-pagination';
 
 const App = () => {
-  const generatedData = [];
+  const generatedData = useMemo(() => [], []);
   for (let i = 1; i <= 100; i++) {
     generatedData.push(`Item-${i}`);
   }
@@ -17,10 +17,12 @@ const App = () => {
   };
 
   const [activeComponent, setActiveComponent] = useState(null);
-  const { paginationChangeHandler, slicedAppData, indexRanges } = usePagination(
-    generatedData,
-    activeComponentChangeHandler.bind(null, null)
-  );
+  const { paginationChangeHandler, slicedAppData, indexRanges } =
+    usePagination(generatedData);
+
+  useEffect(() => {
+    setActiveComponent(null);
+  }, [slicedAppData]);
 
   return (
     <section className="app">

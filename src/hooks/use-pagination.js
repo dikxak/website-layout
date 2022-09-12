@@ -1,11 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
-const usePagination = (
-  appData,
-  defaultActiveComponent,
-  itemsPerPage = 20,
-  currPage = 1
-) => {
+const usePagination = (appData, itemsPerPage = 20, currPage = 1) => {
   const [currentPage, setCurrentPage] = useState(currPage);
 
   const totalItems = appData.length;
@@ -16,18 +11,22 @@ const usePagination = (
 
   const paginationChangeHandler = () => {
     if (currentPage === totalPageCount) return;
-
-    defaultActiveComponent();
     setCurrentPage(prevPage => ++prevPage);
   };
 
-  const slicedAppData = appData.slice(indexStart, indexEnd);
+  const slicedAppData = useMemo(
+    () => appData.slice(indexStart, indexEnd),
+    [appData, indexStart, indexEnd]
+  );
   const indexRanges = [indexStart, indexEnd];
 
   return {
     paginationChangeHandler,
-    slicedAppData,
+    slicedAppData: useMemo(() => slicedAppData, [slicedAppData]),
     indexRanges,
+    currentPage,
+    totalPageCount,
+    setCurrentPage,
   };
 };
 
