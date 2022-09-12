@@ -1,51 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css';
 import Card from './components/Card/Card';
 
+import usePagination from './hooks/use-pagination';
+
 const App = () => {
   const [activeComponent, setActiveComponent] = useState(
     'No any active component'
   );
-  const [appData, setAppData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const totalItems = appData.length;
-  const itemsPerPage = 20;
-  const totalPageCount = totalItems / itemsPerPage;
-
-  const indexStart = (currentPage - 1) * itemsPerPage;
-  const indexEnd = currentPage * itemsPerPage;
+  const { paginationChangeHandler, slicedAppData, indexRanges } =
+    usePagination();
 
   const activeComponentChangeHandler = itemText => {
     setActiveComponent(itemText);
   };
 
-  useEffect(() => {
-    const generatedData = [];
-    for (let i = 1; i <= 100; i++) {
-      generatedData.push(`Item-${i}`);
-    }
-
-    setAppData(generatedData);
-  }, []);
-
-  const paginationChangeHandler = () => {
-    if (currentPage === totalPageCount) return;
-
-    setCurrentPage(prevPage => ++prevPage);
-  };
-
-  const slicedAppData = appData.slice(indexStart, indexEnd);
-
   return (
     <section className="app">
       <main className="main-content">
-        <p>Current Index Range:</p>
-        <p className="active-text">
-          {indexStart}-{indexEnd}
+        <p className="active-component-text">
+          Active Component: {activeComponent}
         </p>
+        <div className="current-index-container">
+          <p>Current Index Range:</p>
+          <p className="active-text">
+            {indexRanges[0]}-{indexRanges[1]}
+          </p>
+        </div>
       </main>
       <Sidebar
         onPageChange={paginationChangeHandler}

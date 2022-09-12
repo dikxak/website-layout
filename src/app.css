@@ -6,12 +6,19 @@
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 4.8rem;
 
   align-items: center;
   justify-content: center;
 
   padding: 1.2rem 2.4rem;
+}
+
+.current-index-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
 }
 
 .main-content p {
@@ -23,6 +30,10 @@
   color: #24800a;
   font-size: 4.2rem;
   font-weight: 700;
+}
+
+.active-component-text {
+  color: #e03131;
 }
 
 /* ================= */
