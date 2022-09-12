@@ -7,12 +7,16 @@ import Card from './components/Card/Card';
 import usePagination from './hooks/use-pagination';
 
 const App = () => {
+  const generatedData = [];
+  for (let i = 1; i <= 100; i++) {
+    generatedData.push(`Item-${i}`);
+  }
+
   const [activeComponent, setActiveComponent] = useState(
     'No any active component'
   );
-
   const { paginationChangeHandler, slicedAppData, indexRanges } =
-    usePagination();
+    usePagination(generatedData);
 
   const activeComponentChangeHandler = itemText => {
     setActiveComponent(itemText);

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const usePagination = () => {
-  const [appData, setAppData] = useState([]);
+const usePagination = appData => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalItems = appData.length;
@@ -10,15 +9,6 @@ const usePagination = () => {
 
   const indexStart = (currentPage - 1) * itemsPerPage;
   const indexEnd = currentPage * itemsPerPage;
-
-  useEffect(() => {
-    const generatedData = [];
-    for (let i = 1; i <= 100; i++) {
-      generatedData.push(`Item-${i}`);
-    }
-
-    setAppData(generatedData);
-  }, []);
 
   const paginationChangeHandler = () => {
     if (currentPage === totalPageCount) return;
