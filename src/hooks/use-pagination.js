@@ -22,7 +22,7 @@ const usePagination = (appData, itemsPerPage = 20, currPage = 1) => {
 
   return {
     paginationChangeHandler,
-    slicedAppData: useMemo(() => slicedAppData, [slicedAppData]),
+    slicedAppData,
     indexRanges,
     currentPage,
     totalPageCount,
